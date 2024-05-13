@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class Player {
@@ -5,21 +6,23 @@ public class Player {
     public int handValue;
     public Card[] hand;
     public String name;
-    public String playerType; //dealer vs. player - maybe make into a boolean
+    public boolean isPlayer; //dealer vs. player - maybe make into a boolean
     public boolean isHit;
-    public Player(String pName, Card[] pHand, String pPlayerType) {
-        name = pName;
-        hand = pHand;
-        playerType = pPlayerType;
+    public Player(String pUserName) {
+        name = pUserName;
+        isPlayer = true;
 
-        for (int i=0; i<hand.length; i++) {
-            handValue+=hand[i].value;
-        }
+
 
     }
 
     public void print() {
-        System.out.println("Player " + name + "is a" + playerType + "who has cards " + Arrays.toString(hand) + " equaling a value of " + handValue);
+        if (isPlayer){
+            System.out.println("hi, " + name);
+            System.out.println("You have " + handValue + " points");
+        } else {
+            System.out.println("dealer info");
+        }
     }
 
 }
