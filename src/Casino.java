@@ -4,6 +4,7 @@ public class Casino {
     public Card[] deck;
     public boolean isHit;
     public Player p;
+    public Player dealer;
     public static void main(String[] args) {
         Casino c = new Casino();
     }
@@ -22,6 +23,10 @@ public class Casino {
         System.out.println(userName);
         p = new Player(userName);
         p.print();
+
+        dealer = new Player("dealer");
+        dealer.isPlayer = false;
+        dealer.print();
 
     }
 
@@ -58,6 +63,9 @@ public class Casino {
     public void deal(){
         p.hand[0] = deck[0];
         p.hand[1] = deck[1];
+
+        dealer.hand[0] = deck[2];
+        dealer.hand[1] = deck[3];
     }
 
 }

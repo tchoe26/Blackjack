@@ -12,8 +12,6 @@ public class Player {
         name = pUserName;
         isPlayer = true;
 
-
-
     }
 
     public void print() {
@@ -21,7 +19,7 @@ public class Player {
             System.out.println("hi, " + name);
             System.out.println("You have " + handValue + " points");
         } else {
-            System.out.println("dealer info");
+            System.out.println("the dealer has " + handValue + " points");
         }
     }
 
