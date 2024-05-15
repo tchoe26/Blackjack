@@ -17,16 +17,27 @@ public class Casino {
         printDeck();
 
 
+
         Scanner scan = new Scanner(System.in);
         System.out.println("enter your username:");
         String userName = scan.nextLine();
         System.out.println(userName);
         p = new Player(userName);
-        p.print();
 
         dealer = new Player("dealer");
         dealer.isPlayer = false;
+
+        deal();
+
+        p.print();
+
         dealer.print();
+
+        p.print();
+
+
+
+
 
     }
 
@@ -61,11 +72,11 @@ public class Casino {
     }
 
     public void deal(){
-        p.hand[0] = deck[0];
-        p.hand[1] = deck[1];
+        p.addCard(deck[0]);
+        p.addCard(deck[1]);
 
-        dealer.hand[0] = deck[2];
-        dealer.hand[1] = deck[3];
+        dealer.addCard(deck[2]);
+        dealer.addCard(deck[3]);
     }
 
 }
