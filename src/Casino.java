@@ -24,17 +24,13 @@ public class Casino {
 
         System.out.println("enter your username:");
         String userName = scan.nextLine();
-        System.out.println(userName);
+        System.out.println("hi, " + userName);
         p = new Player(userName);
 
         dealer = new Player("dealer");
         dealer.isPlayer = false;
 
         deal();
-
-        p.print();
-
-        dealer.print();
         playGame();
     }
 
@@ -71,8 +67,9 @@ public class Casino {
     public void deal(){
         dealCard(p);
         dealCard(p);
-
         dealCard(dealer);
+        p.print();
+        dealer.print();
     }
 
     public void playGame() {
@@ -93,10 +90,12 @@ public class Casino {
             System.out.println();
             System.out.println("bust");
             System.out.println("dealer wins");
+            reset();
         } else if (temp.handValue>21){
             System.out.println();
             System.out.println("dealer bust");
             System.out.println("you win!");
+            reset();
         } else if (temp.isPlayer) {
             playGame();
         }
@@ -109,11 +108,14 @@ public class Casino {
         if (p.handValue > dealer.handValue && p.handValue<=21) {
             System.out.println();
             System.out.println("you win!");
+            reset();
         } else if (dealer.handValue>p.handValue && dealer.handValue<=21) {
             System.out.println();
             System.out.println("dealer wins");
+            reset();
         } else if (dealer.handValue==p.handValue) {
             System.out.println("push");
+            reset();
         }
     }
     public void dealCard(Player temp) {
@@ -121,5 +123,24 @@ public class Casino {
         deckPosition++;
     }
 
+    public void reset() {
+        System.out.println("type 'deal' to play again:");
+        p.reset = scan.nextLine();
+        if (deckPosition>40) {
+            System.out.println("shuffling the deck...");
+            makeDeck();
+            shuffleDeck();
+            deckPosition=0;
+        }
+        if (Objects.equals(p.reset, "deal")) {
+            p.decision = null;
+            p.handLength = 0;
+            p.handValue = 0;
+            dealer.handLength = 0;
+            dealer.handValue = 0;
+            deal();
+            playGame();
+        }
+    }
 
 }

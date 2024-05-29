@@ -9,7 +9,7 @@ public class Player {
     public String name;
     public boolean isPlayer; //dealer vs. player - maybe make into a boolean
     public String decision;
-    int numCards;
+    public String reset;
     public Player(String pUserName) {
         name = pUserName;
         isPlayer = true;
