@@ -80,37 +80,46 @@ public class Casino {
         p.decision = scan.nextLine();
         if (Objects.equals(p.decision, "hit")) {
             hit(p);
-
         } if (Objects.equals(p.decision, "stand")) {
-            stand(p);
+            stand();
         }
     }
 
     public void hit(Player temp) {
         dealCard(temp);
-        temp.print();
+        p.print();
+        dealer.print();
         if (temp.handValue>21 && temp.isPlayer) {
+            System.out.println();
             System.out.println("bust");
+            System.out.println("dealer wins");
         } else if (temp.handValue>21){
+            System.out.println();
             System.out.println("dealer bust");
-        } else {
+            System.out.println("you win!");
+        } else if (temp.isPlayer) {
             playGame();
         }
     }
-    public void stand(Player temp) {
-        if (dealer.handValue<17) {
-            System.out.println("test");
+    public void stand() {
+        System.out.println("you chose to stand:");
+        while (dealer.handValue<17) {
             hit(dealer);
-            dealer.print();
-        } else if (p.handValue > dealer.handValue) {
-            System.out.println("player wins");
-        } else if (dealer.handValue>p.handValue) {
+        }
+        if (p.handValue > dealer.handValue && p.handValue<=21) {
+            System.out.println();
+            System.out.println("you win!");
+        } else if (dealer.handValue>p.handValue && dealer.handValue<=21) {
+            System.out.println();
             System.out.println("dealer wins");
+        } else if (dealer.handValue==p.handValue) {
+            System.out.println("push");
         }
     }
     public void dealCard(Player temp) {
         temp.addCard(deck[deckPosition]);
         deckPosition++;
     }
+
 
 }
