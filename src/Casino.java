@@ -18,7 +18,7 @@ public class Casino {
         System.out.println("welcome to the casino");
         makeDeck();
         shuffleDeck();
-        //printDeck();
+        printDeck();
 
 
 
@@ -73,11 +73,11 @@ public class Casino {
     }
 
     public void playGame() {
-        System.out.println("hit or stand?");
+        System.out.println("hit or stand? (h/s)");
         p.decision = scan.nextLine();
-        if (Objects.equals(p.decision, "hit")) {
+        if (Objects.equals(p.decision, "h")) {
             hit(p);
-        } if (Objects.equals(p.decision, "stand")) {
+        } if (Objects.equals(p.decision, "s")) {
             stand();
         }
     }
@@ -124,7 +124,7 @@ public class Casino {
     }
 
     public void reset() {
-        System.out.println("type 'deal' to play again:");
+        System.out.println("do you want to play again? (y/n)");
         p.reset = scan.nextLine();
         if (deckPosition>40) {
             System.out.println("shuffling the deck...");
@@ -132,7 +132,7 @@ public class Casino {
             shuffleDeck();
             deckPosition=0;
         }
-        if (Objects.equals(p.reset, "deal")) {
+        if (Objects.equals(p.reset, "y")) {
             p.decision = null;
             p.handLength = 0;
             p.handValue = 0;
@@ -140,6 +140,8 @@ public class Casino {
             dealer.handValue = 0;
             deal();
             playGame();
+        } else if (Objects.equals(p.reset, "n")) {
+            System.out.println("thank you for playing :)");
         }
     }
 
